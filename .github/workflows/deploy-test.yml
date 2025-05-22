@@ -1,0 +1,22 @@
+name: deploy-test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone private repo via HTTPS with username/password
+        uses: chihqiang/checkout-action@main
+        with:
+          repo: ${{ secrets.PRIVATE_REPO }}
+          username: ${{ secrets.PRIVATE_USERNAME }}
+          password: ${{ secrets.PRIVATE_PASSWORD }}
+          branch: main
+      - name: Deploy to Server
+        uses: chihqiang/ssh-deploy-action@main
+        with:
+          project_path: repo
+          tar_args: "--exclude='.git'"
+          deploy_hosts: ${{ secrets.TEST_DEPLOY_HOSTS }}
