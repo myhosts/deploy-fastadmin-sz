@@ -14,10 +14,17 @@ jobs:
           username: ${{ secrets.PRIVATE_USERNAME }}
           password: ${{ secrets.PRIVATE_PASSWORD }}
           branch: main
+          dest: .
+      - name: PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.4
+          extensions: openssl
+      - name: Install Dependencies
+        run: composer install --no-progress
       - name: Deploy to Server
         uses: chihqiang/ssh-deploy-action@main
         with:
-          project_path: repo
           project_name: sz
           tar_args: --exclude .git
           deploy_hosts: ${{ secrets.TEST_DEPLOY_HOSTS }}
