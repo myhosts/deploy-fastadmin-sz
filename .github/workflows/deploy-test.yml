@@ -19,5 +19,5 @@ jobs:
         with:
           project_path: repo
           project_name: sz
-          tar_args: --exclude=".git"
+          tar_args: --exclude .git
           deploy_hosts: ${{ secrets.TEST_DEPLOY_HOSTS }}
