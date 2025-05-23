@@ -18,5 +18,6 @@ jobs:
         uses: chihqiang/ssh-deploy-action@main
         with:
           project_path: repo
-          tar_args: "--exclude='.git'"
+          project_name: sz
+          tar_args: --exclude='.git'
           deploy_hosts: ${{ secrets.TEST_DEPLOY_HOSTS }}
