@@ -28,3 +28,4 @@ jobs:
           project_name: sz
           tar_args: --exclude .git
           deploy_hosts: ${{ secrets.TEST_DEPLOY_HOSTS }}
+          post_deploy_cmd: pwd
